@@ -1,3 +1,8 @@
+<script lang="ts">
+  import { buildInfo } from '$lib';
+  import BuildFooter from '$lib/components/BuildFooter.svelte';
+</script>
+
 <svelte:head>
   <title>Template PWA Mobile</title>
   <meta
@@ -49,9 +54,7 @@
   </section>
 </main>
 
-<footer class="footer">
-  <small>&copy; {new Date().getFullYear()} Template PWA Mobile</small>
-</footer>
+<BuildFooter {buildInfo} />
 
 <style>
   .page {
@@ -152,14 +155,6 @@
     margin: 0;
     line-height: 1.5;
     color: #1f2937;
-  }
-
-  .footer {
-    padding: 1.5rem clamp(1.5rem, 4vw, 3rem);
-    text-align: center;
-    background: transparent;
-    color: rgba(15, 23, 42, 0.7);
-    border-top: 1px solid rgba(148, 163, 184, 0.3);
   }
 
   @media (min-width: 48rem) {
