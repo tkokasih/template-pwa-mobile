@@ -1,9 +1,6 @@
 <script lang="ts">
   import { buildInfo } from '$lib';
-
-  const hasBuildInfo = Boolean(
-    buildInfo.sha || buildInfo.formattedTimestamp || (buildInfo.showBranch && buildInfo.branch)
-  );
+  import BuildFooter from '$lib/components/BuildFooter.svelte';
 </script>
 
 <svelte:head>
@@ -57,28 +54,7 @@
   </section>
 </main>
 
-<footer class="footer">
-  <div class="footer__content">
-    <small>&copy; {new Date().getFullYear()} Template PWA Mobile</small>
-    {#if hasBuildInfo}
-      <small class="footer__meta">
-        <span>build</span>
-        {#if buildInfo.sha}
-          <code>{buildInfo.sha}</code>
-        {/if}
-        {#if buildInfo.formattedTimestamp}
-          <span>on {buildInfo.formattedTimestamp}</span>
-        {/if}
-        {#if buildInfo.showBranch && buildInfo.branch}
-          <span>
-            from branch
-            <code>{buildInfo.branch}</code>
-          </span>
-        {/if}
-      </small>
-    {/if}
-  </div>
-</footer>
+<BuildFooter {buildInfo} />
 
 <style>
   .page {
@@ -179,42 +155,6 @@
     margin: 0;
     line-height: 1.5;
     color: #1f2937;
-  }
-
-  .footer {
-    padding: 1.5rem clamp(1.5rem, 4vw, 3rem);
-    text-align: center;
-    background: transparent;
-    color: rgba(15, 23, 42, 0.7);
-    border-top: 1px solid rgba(148, 163, 184, 0.3);
-  }
-
-  .footer__content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .footer__meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.25rem 0.5rem;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .footer__meta code {
-    background: rgba(15, 23, 42, 0.08);
-    border-radius: 0.375rem;
-    padding: 0.1rem 0.35rem;
-    font-family:
-      'JetBrains Mono', 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-      monospace;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
   }
 
   @media (min-width: 48rem) {
